@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gallery/Post.dart';
 import 'package:gallery/json.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreen extends State<HomeScreen> {
 
 
-  Future<List<Office>> office;
+  Future<List<Post>> office;
 
   @override
   void initState() {
@@ -31,7 +32,7 @@ class _HomeScreen extends State<HomeScreen> {
           backgroundColor: Colors.green,
         ),
         body: Center(
-          child: FutureBuilder<List<Office>>(
+          child: FutureBuilder<List<Post>>(
           future: office,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
