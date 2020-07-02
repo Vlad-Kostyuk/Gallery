@@ -12,12 +12,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreen extends State<HomeScreen> {
 
 
-  Future<Office> office;
+  Future<List<Office>> office;
 
   @override
   void initState() {
     super.initState();
-    office =  get();
+    office = get();
   }
 
   @override
@@ -31,18 +31,18 @@ class _HomeScreen extends State<HomeScreen> {
           backgroundColor: Colors.green,
         ),
         body: Center(
-          child: FutureBuilder<Office>(
+          child: FutureBuilder<List<Office>>(
           future: office,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
-                   //itemCount: snapshot.data.office.length,
+                   itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       return Container(
                         child: ListTile(
-                            title: Text(snapshot.data.author),
-                            subtitle: Text(snapshot.data.name),
-                            leading: Image.network('${snapshot.data.image}'),
+                            title: Text(snapshot.data[index].userName),
+                            subtitle: Text(snapshot.data[index].descriptionFoto),
+                            leading: Image.network('${snapshot.data[index].imageUrl}'),
                           isThreeLine: true,
                         ),
                       );
