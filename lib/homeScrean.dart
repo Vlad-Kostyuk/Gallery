@@ -17,7 +17,7 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    postList = get();
+    postList = getPost();
   }
 
   @override
