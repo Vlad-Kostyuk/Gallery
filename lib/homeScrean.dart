@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gallery/json.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.child}) : super(key: key);
@@ -10,32 +11,52 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> {
 
-  List<String> litems = ["fdfd", "dffdfdfd", "dfdfdfdfd"];
+
+  Future<Office> officesList;
 
   @override
   void initState() {
     super.initState();
+    officesList = getOfficesList();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("Gallery"),
-            centerTitle: true,
-            backgroundColor: Colors.green,
-          ),
-
-          body: ListView.builder(
-            itemCount: litems.length,
-            itemBuilder: (BuildContext bc, int index) {
-             return new Text(litems[index]);
-            }
-          ),
-
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Gallery"),
+          centerTitle: true,
+          backgroundColor: Colors.green,
         ),
+        body: Center(
+          child: FutureBuilder<Office>(
+            future: officesList,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                   // itemCount: snapshot.data.offices.length,
+                    itemBuilder: (context, index) {
+                      print(snapshot.data.image);
+                      return Container(
+                        child: ListTile(
+                            title: Text(snapshot.data.author),
+                            subtitle: Text(snapshot.data.name),
+                            leading: Image.network('${snapshot.data.image}'),
+                          isThreeLine: true,
+                        ),
+                      );
+                    },
+                );
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+              return CircularProgressIndicator();
+            },
+          ),
+        ),
+      ),
     );
   }
 }
