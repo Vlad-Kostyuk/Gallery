@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gallery/Post.dart';
+import 'package:gallery/post.dart';
 import 'package:gallery/json.dart';
-import 'package:gallery/PageFoto.dart';
+import 'package:gallery/pageFoto.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.child}) : super(key: key);
