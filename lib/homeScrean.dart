@@ -12,12 +12,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreen extends State<HomeScreen> {
 
 
-  Future<Office> officesList;
+  Future<Office> office;
 
   @override
   void initState() {
     super.initState();
-    officesList = getOfficesList();
+    office =  get();
   }
 
   @override
@@ -32,13 +32,12 @@ class _HomeScreen extends State<HomeScreen> {
         ),
         body: Center(
           child: FutureBuilder<Office>(
-            future: officesList,
+          future: office,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
-                   // itemCount: snapshot.data.offices.length,
+                   //itemCount: snapshot.data.office.length,
                     itemBuilder: (context, index) {
-                      print(snapshot.data.image);
                       return Container(
                         child: ListTile(
                             title: Text(snapshot.data.author),
