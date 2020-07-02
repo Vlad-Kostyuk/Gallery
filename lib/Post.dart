@@ -2,7 +2,8 @@
 class Post {
   final String userName;
   final String descriptionFoto;
-  final String imageUrl;
+  final String imageUrlSmall;
+  final String imageUrlFull;
 
-  Post(this.userName,this.descriptionFoto, this.imageUrl);
+  Post(this.userName,this.descriptionFoto, this.imageUrlSmall, this.imageUrlFull);
 }
